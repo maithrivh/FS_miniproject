@@ -1,5 +1,5 @@
 /*Name: FS Miniproject
-Author: Maithri Hebbar
+Modified by: Maithri Hebbar
 Date:10/08/2021
 */
 #include<iostream>
@@ -15,23 +15,6 @@ class pass
 {
 public:
     char p[20];
-    void password(int x)
-    {
-       if(x==1234)
-       {
-           cout<<"\nEnter password(less than 10 characters)";
-           cin.ignore();
-           cin.getline(p,20);
-           fstream wr;
-           wr.open("pass.txt",ios::out);
-           wr.write((char*)this,sizeof(pass));
-           wr.close();
-       }
-       else
-       {
-           cout<<"\nCode Error";
-       }
-    }
 };
 pass obj1;
 void gotoxy (int x, int y)
@@ -155,18 +138,6 @@ void alotroom()
 void roomstatus()
 {
     char p1[20];
-    fstream rdp;
-    rdp.open("pass.txt",ios::in);
-    rdp.read((char*)&obj1,sizeof(pass));
-    cout<<"\nEnter password ";
-    for(int i=0;i<strlen(obj1.p);i++)
-    {
-        p1[i]=getch();
-        cout<<"*";
-    }
-    p1[strlen(obj1.p)]='\0';
-    if(stricmp(p1,obj1.p)==0)
-     {
       fstream rd;
       rd.open("record.txt",ios::in);
       rd.seekg(0,ios::end);
@@ -178,12 +149,9 @@ void roomstatus()
         rd.read((char*)&obj,sizeof(obj));
         obj.display();
        }
-     }
-    else
-     {
-        cout<<"\nPassword Mismatch";
-     }
 }
+
+
 void rstatus()
 {
        fstream rd;
@@ -379,6 +347,10 @@ main()
              e=0;
              break;
          }
+         default:
+            cout<<"\tINVALID INPUT\n PLEASE SELECT A VALID INPUT FROM THE MENU";
+             cout<<"\n----------------------------";
+                cout<<"\n";
          }
          }
 
